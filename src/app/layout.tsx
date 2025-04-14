@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import React from "react";
-import Navbar from "@/components/global/large-navbar";
-import Footer from "@/components/global/large-footer";
 
-const inter = Inter({ subsets: ["latin"] });
+import SubNavbar from "@/components/global/sub-navbar";
+import UpperNavbar from "@/components/global/upper-navbar";
+import Navbar from "@/components/global/navbar";
+import Footer from "@/components/global/footer";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "AYNcore E-commerce",
-  description: "NEXTJS",
+  description: "Made with AYNcore",
 };
 
 export default function RootLayout({
@@ -18,10 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-       <body className={`${inter.className} bg-darkcolor`}>
-        <Navbar />
-        <main className='main flex-1'>{children}</main>
+    <html lang="en" className={poppins.className}>
+      <body className={`bg-lightBackground w-screen relative`}>
+        <div className="w-full bg-[#232F3E] text-white">
+          <UpperNavbar />
+          <Navbar />
+          <SubNavbar />
+        </div>
+        <main className="main flex-1">{children}</main>
         <Footer />
       </body>
     </html>
